@@ -64,8 +64,31 @@ public class Producto implements Serializable{
     @JoinTable(name = "presentacion_seq",
     joinColumns = {@JoinColumn (name = "producto_id")},
     inverseJoinColumns = {@JoinColumn(name = "presentacion_id")})
-
+    @JsonIgnore
     private List<Presentacion> presentaciones;
+
     
+
+    public long getId() {
+
+        return id;
+    }
+
+    public String getName() {
+        return name;
+      }
+    
+    public void setName(String name) {
+    this.name = name;
+    }
+
+    public List<Presentacion> getPresentaciones() {
+        return presentaciones;
+      }
+    
+      public void setPresentacion(List<Presentacion> presentaciones) {
+        this.presentaciones = presentaciones;
+      }
+
 
 }

@@ -49,7 +49,25 @@ public class Presentacion implements Serializable{
     @JsonIgnore
     private List<Producto> productos;
 
-        
+    public Presentacion(String name, String description) {
+        this.name = name;
+        this.description = description;
+      }
+    
+      // getters and setters
+    
+      public void addProducto(Producto producto) {
+        this.productos.add(producto);
+        producto.getPresentaciones().add(this);
+      }
+      
+      public void removeProducto(long productoId) {
+        Producto producto = this.productos.stream().filter(t -> t.getId() == productoId).findFirst().orElse(null);
+        if (producto != null) {
+          this.productos.remove(producto);
+          producto.getPresentaciones().remove(this);
+        }
+      }
 
     
 
